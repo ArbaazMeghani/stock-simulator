@@ -1,5 +1,9 @@
 let express = require('express');
+let keys = require('../config/keys');
+let mongoose = require('mongoose');
 const { ApolloServer, gql } = require('apollo-server-express');
+
+mongoose.connect(keys.mongoURI);
 
 const typeDefs = gql`
   type Query {
