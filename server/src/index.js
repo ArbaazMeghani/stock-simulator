@@ -3,7 +3,9 @@ let keys = require('../config/keys');
 let mongoose = require('mongoose');
 const { ApolloServer, gql } = require('apollo-server-express');
 
-mongoose.connect(keys.mongoURI);
+mongoose.connect(keys.mongoURI, {
+  useNewUrlParser: true,
+});
 
 const typeDefs = gql`
   type Query {
