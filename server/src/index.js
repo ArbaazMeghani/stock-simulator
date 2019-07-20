@@ -2,22 +2,12 @@ let express = require('express');
 let keys = require('../config/keys');
 let mongoose = require('mongoose');
 const { ApolloServer, gql } = require('apollo-server-express');
+let typeDefs = require('./typeDefs/typeDefs');
+let resolvers = require('./resolvers/resolvers');
 
 mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
 });
-
-const typeDefs = gql`
-  type Query {
-    hello: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: () => 'Hello World!'
-  }
-};
 
 const server = new ApolloServer({ typeDefs, resolvers });
 const app = express();
