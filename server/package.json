@@ -1,0 +1,19 @@
+{
+  "name": "stock-simulator-server",
+  "version": "1.0.0",
+  "description": "Server for a stock simulator web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArbaazMeghani/stock-simulator.git"
+  },
+  "author": "Arbaaz Meghani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ArbaazMeghani/stock-simulator/issues"
+  },
+  "homepage": "https://github.com/ArbaazMeghani/stock-simulator#readme"
+}
