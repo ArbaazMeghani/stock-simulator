@@ -1,5 +1,6 @@
 const temp_user = {
   _id: 1,
+  email: "Test@gmail.com",
   username: "Test"
 }
 
