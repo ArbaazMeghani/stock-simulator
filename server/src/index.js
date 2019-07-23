@@ -4,12 +4,13 @@ let mongoose = require('mongoose');
 const { ApolloServer, gql } = require('apollo-server-express');
 let typeDefs = require('./typeDefs/typeDefs');
 let resolvers = require('./resolvers/resolvers');
+let usersModel = require('./models/User');
 
 mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
 });
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({ typeDefs, resolvers, context: {usersModel} });
 const app = express();
 server.applyMiddleware({ app });
 
