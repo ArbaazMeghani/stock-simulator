@@ -8,6 +8,7 @@ let usersModel = require('./models/User');
 
 mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
+  useCreateIndex: true
 });
 
 const server = new ApolloServer({ typeDefs, resolvers, context: {usersModel} });
