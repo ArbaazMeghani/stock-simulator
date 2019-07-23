@@ -14,7 +14,7 @@ mongoose.connect(keys.mongoURI, {
 
 const SECRET = 'ab934iowjefldfpos90wqopkdlszj93iolajsf8ew930wl';
 
-const addUser = async (req, res, next) => {
+const addUser = async (req) => {
   const token = req.headers.authorization;
   try {
     const { user } = await jwt.verify(token, SECRET);
@@ -24,7 +24,7 @@ const addUser = async (req, res, next) => {
     console.log(err);
   }
 
-  next();
+  req.next();
 };
 
 const app = express();
