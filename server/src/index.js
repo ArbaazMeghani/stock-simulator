@@ -5,6 +5,7 @@ const { ApolloServer, gql } = require('apollo-server-express');
 let typeDefs = require('./typeDefs/typeDefs');
 let resolvers = require('./resolvers/resolvers');
 let usersModel = require('./models/User');
+let jwt = require('jsonwebtoken');
 
 mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
@@ -13,8 +14,34 @@ mongoose.connect(keys.mongoURI, {
 
 const SECRET = 'ab934iowjefldfpos90wqopkdlszj93iolajsf8ew930wl';
 
-const server = new ApolloServer({ typeDefs, resolvers, context: {usersModel, SECRET} });
+const addUser = async (req, res) => {
+  const token = req.headers.authentication;
+  try {
+    const { user } = await jwt.verify(token, SECRET);
+    req.user = user;
+  }
+  catch(err) {
+    console.log(err);
+  }
+
+  res.next();
+};
+
 const app = express();
+app.use(addUser);
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: req => {
+    return {
+      usersModel,
+      SECRET,
+      user: req.user
+    };
+  }
+});
+
 server.applyMiddleware({ app });
 
 const port = process.env.PORT || 4000;
