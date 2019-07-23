@@ -11,7 +11,9 @@ mongoose.connect(keys.mongoURI, {
   useCreateIndex: true
 });
 
-const server = new ApolloServer({ typeDefs, resolvers, context: {usersModel} });
+const SECRET = 'ab934iowjefldfpos90wqopkdlszj93iolajsf8ew930wl';
+
+const server = new ApolloServer({ typeDefs, resolvers, context: {usersModel, SECRET} });
 const app = express();
 server.applyMiddleware({ app });
 
