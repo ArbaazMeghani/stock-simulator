@@ -1,7 +1,7 @@
 let express = require('express');
 let keys = require('../config/keys');
 let mongoose = require('mongoose');
-const { ApolloServer, gql } = require('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
 let typeDefs = require('./typeDefs/typeDefs');
 let resolvers = require('./resolvers/resolvers');
 let usersModel = require('./models/User');
