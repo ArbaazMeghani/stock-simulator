@@ -13,7 +13,7 @@ const resolvers = {
     login: (root, { username, password }) => {
       return temp_user;
     },
-    signup: (root, { username, password }) => {
+    signup: (root, { email, username, password }) => {
       return temp_user; 
     },
   },
