@@ -10,6 +10,10 @@ const resolvers = {
   Mutation : {
     login: async (root, { username, password }, { usersModel, SECRET }) => {
       const user = await usersModel.findOne({ username });
+      if(!user) {
+        throw new Error('Invalid username or password');
+      }
+
       const validUser = await bcrypt.compare(password, user.password);
       if(!validUser) {
         throw new Error('Invalid username or password');
