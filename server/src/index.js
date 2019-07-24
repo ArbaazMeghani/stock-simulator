@@ -21,7 +21,7 @@ const addUser = async (req) => {
     req.user = user;
   }
   catch(err) {
-    console.log(err);
+    req.user = undefined;
   }
 
   req.next();
