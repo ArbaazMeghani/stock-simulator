@@ -4,7 +4,7 @@ let lodash = require('lodash');
 
 const resolvers = {
   Query: {
-    currentUser: () => temp_user
+    currentUser: (root, args, { user }) => user
   },
 
   Mutation : {
