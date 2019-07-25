@@ -4,7 +4,10 @@
   "description": "A stock simulator web application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm start --prefix client",
+    "server": "npm run dev --prefix server",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/ArbaazMeghani/stock-simulator/issues"
   },
-  "homepage": "https://github.com/ArbaazMeghani/stock-simulator#readme"
+  "homepage": "https://github.com/ArbaazMeghani/stock-simulator#readme",
+  "dependencies": {
+    "concurrently": "^4.1.1"
+  }
 }
