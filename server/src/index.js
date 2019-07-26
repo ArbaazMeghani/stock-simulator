@@ -6,6 +6,7 @@ let typeDefs = require('./typeDefs/typeDefs');
 let resolvers = require('./resolvers/resolvers');
 let usersModel = require('./models/User');
 let jwt = require('jsonwebtoken');
+let cors = require('cors');
 
 mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
@@ -28,6 +29,7 @@ const addUser = async (req) => {
 };
 
 const app = express();
+app.use(cors);
 app.use(addUser);
 
 const server = new ApolloServer({
