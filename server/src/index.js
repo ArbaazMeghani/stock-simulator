@@ -29,7 +29,7 @@ const addUser = async (req) => {
 };
 
 const app = express();
-app.use(cors);
+app.use(cors());
 app.use(addUser);
 
 const server = new ApolloServer({
