@@ -47,7 +47,7 @@ const server = new ApolloServer({
 
 if(process.env.NODE_ENV == 'production') {
   console.log("Running production version");
-  app.use(express.static('../../public'));
+  app.use(express.static(path.join(__dirname, '../../public')));
 
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../../public', 'index.html'));
