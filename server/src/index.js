@@ -7,6 +7,7 @@ let resolvers = require('./resolvers/resolvers');
 let usersModel = require('./models/User');
 let jwt = require('jsonwebtoken');
 let cors = require('cors');
+let path = require('path');
 
 mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
@@ -43,6 +44,14 @@ const server = new ApolloServer({
     };
   }
 });
+
+if(process.env.NODE_ENV == 'production') {
+  app.use(express.static('../../public'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../../public', 'index.html'));
+  });
+}
 
 server.applyMiddleware({ app });
 
