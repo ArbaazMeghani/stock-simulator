@@ -14,12 +14,10 @@ mongoose.connect(keys.mongoURI, {
   useCreateIndex: true
 });
 
-const SECRET = 'ab934iowjefldfpos90wqopkdlszj93iolajsf8ew930wl';
-
 const addUser = async (req) => {
   const token = req.headers.authorization;
   try {
-    const { user } = await jwt.verify(token, SECRET);
+    const { user } = await jwt.verify(token, keys.JWT_SECRET);
     req.user = user;
   }
   catch(err) {
@@ -39,7 +37,7 @@ const server = new ApolloServer({
   context: req => {
     return {
       usersModel,
-      SECRET,
+      SECRET: keys.JWT_SECRET,
       user: req.user
     };
   }
