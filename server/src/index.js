@@ -46,6 +46,7 @@ const server = new ApolloServer({
 });
 
 if(process.env.NODE_ENV == 'production') {
+  console.log("Running production version");
   app.use(express.static('../../public'));
 
   app.get('*', (req, res) => {
