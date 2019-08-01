@@ -29,12 +29,17 @@ export default class TransactionPane extends React.Component {
           </Form.Group>
 
           <Form.Group as={Row}>
-            <Button variant="success" className="mr-auto mx-4" column>
-              Buy
-            </Button>
-            <Button variant="danger" className="mx-4" column>
-              Sell
-            </Button>
+            <Col>
+              <Button variant="success" className="mr-auto mx-4">
+                Buy
+              </Button>
+            </Col>
+
+            <Col>
+              <Button variant="danger" className="mx-4">
+                Sell
+              </Button>
+            </Col>
           </Form.Group>
         </Form>
       </div>
