@@ -7,7 +7,7 @@ export default class WatchList extends React.Component {
       <div className="mt-5">
         <h4> Watch List</h4>
         <div className="mt-4">
-          <WatchListItem symbol="APPL"/>
+          <WatchListItem symbol="AAPL"/>
           <WatchListItem symbol="MSFT"/>
           <WatchListItem symbol="FB"/>
           <WatchListItem symbol="GOOG"/>
