@@ -1,10 +1,10 @@
-export default (state = {}, action) => {
+export default (state = {symbol: "AAPL"}, action) => {
   switch (action.type) {
    case 'SET_SYMBOL':
     return {
-     result: action.payload
+     symbol: action.payload
     };
    default:
     return state;
   }
- }
+}
