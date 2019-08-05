@@ -4,19 +4,32 @@ import { ApolloProvider } from 'react-apollo';
 import Header from './Header';
 import Footer from './Footer';
 import Body from './Body';
+import { connect } from 'react-redux';
 
-const client = new ApolloClient({
-  uri: '/graphql'
-});
+class App extends React.Component {
+  client = new ApolloClient({
+    uri: '/graphql',
+    headers: {
+      authorization: this.props.token
+    }
+  });
 
-function App() {
-  return (
-    <ApolloProvider client={client}>
-      <Header />
-      <Body />
-      <Footer />
-    </ApolloProvider>
-  );
+  render() {
+    return (
+      <ApolloProvider client={this.client}>
+        <Header />
+        <Body />
+        <Footer />
+      </ApolloProvider>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => {
+  const { authReducer } = state;
+  return {
+    token: 'TOKEN'
+  };
+}
+
+export default connect(mapStateToProps, null)(App);
