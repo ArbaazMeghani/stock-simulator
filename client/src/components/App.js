@@ -28,7 +28,7 @@ class App extends React.Component {
 const mapStateToProps = state => {
   const { authReducer } = state;
   return {
-    token: 'TOKEN'
+    token: authReducer.token
   };
 }
 
