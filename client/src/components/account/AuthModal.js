@@ -6,17 +6,23 @@ import RegisterForm from './RegisterForm';
 import { connect } from 'react-redux';
 
 class AuthModal extends React.Component {
+  formType() {
+    if(this.props.authForm === 0) {
+      return <LoginForm />
+    }
+    return <RegisterForm />
+  }
+
   render() {
     return (
-      <Modal show={false} aria-labelledby="contained-modal-title-vcenter" centered>
+      <Modal show={this.props.authShow} aria-labelledby="contained-modal-title-vcenter" centered>
         <Modal.Header closeButton>
           <Modal.Title>
-            Sign In
+            {this.props.authTitle}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <LoginForm />
-          <RegisterForm />
+          {this.formType()}
         </Modal.Body>
         <Modal.Footer>
           <Button type="submit">Login</Button>
@@ -26,8 +32,13 @@ class AuthModal extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  ...state
-})
+const mapStateToProps = state => {
+  const { authReducer } = state;
+  return {
+    authShow: authReducer.show,
+    authTitle: authReducer.title,
+    authForm: authReducer.formType
+  };
+}
 
 export default connect(mapStateToProps, null)(AuthModal);
