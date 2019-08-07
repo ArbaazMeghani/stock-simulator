@@ -7,7 +7,7 @@ export const updateTokenAction = (token) => dispatch => {
 
 export const beginAuthAction = (authInfo) => dispatch => {
   dispatch({
-    type: 'BEING_AUTH',
+    type: 'BEGIN_AUTH',
     payload: authData
   });
 }
