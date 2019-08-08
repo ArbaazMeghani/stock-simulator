@@ -33,6 +33,7 @@ class AuthModal extends React.Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   const { authReducer } = state;
   return {
     authShow: authReducer.show,

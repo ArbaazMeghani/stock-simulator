@@ -14,9 +14,9 @@ export default (
       };
     case 'BEGIN_AUTH':
       return {
-        show: action.show,
-        title: action.title,
-        formType: action.formType
+        show: action.payload.show,
+        title: action.payload.title,
+        formType: action.payload.formType
       }
     default:
       return state;
