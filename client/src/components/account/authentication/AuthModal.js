@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import { connect } from 'react-redux';
+import { beginAuthAction } from '../../../actions/authAction';
 
 class AuthModal extends React.Component {
   formType() {
@@ -42,4 +43,8 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps, null)(AuthModal);
+const mapDispatchToProps = dispatch => ({
+  beginAuthAction: (authInfo) => dispatch(beginAuthAction(authInfo))
+ })
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthModal);
