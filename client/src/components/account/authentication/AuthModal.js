@@ -39,7 +39,7 @@ class AuthModal extends React.Component {
           {this.formType()}
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit">Login</Button>
+          <Button type="submit">{this.props.authTitle}</Button>
         </Modal.Footer>
       </Modal>
     );

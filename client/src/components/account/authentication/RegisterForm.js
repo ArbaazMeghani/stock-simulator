@@ -1,6 +1,5 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 
 const style = {
   maxWidth: "50%",
@@ -13,11 +12,11 @@ export default function RegisterForm( {switchFormType} ) {
   return (
     <Form>
       <Form.Group style={style}>
-        <Form.Control type="email" placeholder="email"/>
+        <Form.Control type="email" placeholder="E-mail"/>
       </Form.Group>
 
       <Form.Group style={style}>
-        <Form.Control type="text" placeholder="username"/>
+        <Form.Control type="text" placeholder="Username"/>
       </Form.Group>
 
       <Form.Group>
