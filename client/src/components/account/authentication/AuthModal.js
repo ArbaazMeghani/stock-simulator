@@ -14,9 +14,13 @@ class AuthModal extends React.Component {
     return <RegisterForm />
   }
 
+  handleClose = () => {
+    this.props.beginAuthAction({show: false});
+  }
+
   render() {
     return (
-      <Modal show={this.props.authShow} aria-labelledby="contained-modal-title-vcenter" centered>
+      <Modal show={this.props.authShow} aria-labelledby="contained-modal-title-vcenter" centered onHide={this.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
             {this.props.authTitle}
@@ -34,7 +38,6 @@ class AuthModal extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   const { authReducer } = state;
   return {
     authShow: authReducer.show,
