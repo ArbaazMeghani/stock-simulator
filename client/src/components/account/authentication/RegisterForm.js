@@ -28,8 +28,8 @@ export default function RegisterForm( {switchFormType} ) {
         <Form.Control style={style} type="password" placeholder="Confirm Password"/>
       </Form.Group>
 
-      <Form.Group>
-        <Button onClick={switchFormType}> Login </Button>
+      <Form.Group style={style}>
+        <a href="#" onClick={switchFormType}> Already have an account? Login instead -> </a>
       </Form.Group>
     </Form>
   );
