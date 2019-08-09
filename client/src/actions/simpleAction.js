@@ -1,6 +1,5 @@
+import baseAction from './baseAction';
+
 export const simpleAction = (symbol) => dispatch => {
-  dispatch({
-    type: 'SET_SYMBOL',
-    payload: symbol
-  });
+  baseAction('SET_SYMBOL', symbol, dispatch);
 }

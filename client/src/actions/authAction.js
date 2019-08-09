@@ -1,13 +1,13 @@
+import baseAction from './baseAction';
+
 export const updateTokenAction = (token) => dispatch => {
-  dispatch({
-    type: 'AUTH_TOKEN',
-    payload: token
-  });
+  baseAction('AUTH_TOKEN', token, dispatch);
 }
 
 export const beginAuthAction = (authInfo) => dispatch => {
-  dispatch({
-    type: 'BEGIN_AUTH',
-    payload: authInfo
-  });
+  baseAction('BEGIN_AUTH', authInfo, dispatch);
+}
+
+export const userInfoAction = (userInfo) => dispatch => {
+  baseAction('USER_INFO', userInfo, dispatch);
 }
