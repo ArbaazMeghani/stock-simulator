@@ -9,13 +9,22 @@ import { beginAuthAction } from '../../../actions/authAction';
 class AuthModal extends React.Component {
   formType() {
     if(this.props.authForm === 0) {
-      return <LoginForm />
+      return <LoginForm switchFormType={this.switchFormType}/>
     }
-    return <RegisterForm />
+    return <RegisterForm switchFormType={this.switchFormType}/>
   }
 
   handleClose = () => {
     this.props.beginAuthAction({show: false});
+  }
+
+  switchFormType = () => {
+    if(this.props.authForm === 0) {
+      this.props.beginAuthAction(this.props.registerAuthInfo);
+    }
+    else {
+      this.props.beginAuthAction(this.props.loginAuthInfo);
+    }
   }
 
   render() {

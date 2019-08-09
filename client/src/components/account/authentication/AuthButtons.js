@@ -26,7 +26,7 @@ class AuthButtons extends React.Component {
           <Button className="mx-2" variant="primary" onClick={() => this.props.beginAuthAction(this.registerAuthInfo)}>Sign Up!</Button>
         </ButtonToolbar>
 
-        <AuthModal />
+        <AuthModal registerAuthInfo={this.registerAuthInfo} loginAuthInfo={this.loginAuthInfo}/>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 const style = {
   maxWidth: "50%",
@@ -8,7 +9,7 @@ const style = {
   marginTop: "10ox"
 }
 
-export default function RegisterForm() {
+export default function RegisterForm( {switchFormType} ) {
   return (
     <Form>
       <Form.Group style={style}>
@@ -25,6 +26,10 @@ export default function RegisterForm() {
 
       <Form.Group>
         <Form.Control style={style} type="password" placeholder="Confirm Password"/>
+      </Form.Group>
+
+      <Form.Group>
+        <Button onClick={switchFormType}> Login </Button>
       </Form.Group>
     </Form>
   );
