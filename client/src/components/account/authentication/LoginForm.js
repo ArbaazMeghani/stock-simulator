@@ -8,11 +8,11 @@ const style = {
   marginTop: "10ox"
 }
 
-export default function LoginForm( { switchFormType } ) {
+export default function LoginForm( { switchFormType, setUsername, setPassword } ) {
   return (
     <Form>
       <Form.Group style={style}>
-        <Form.Control type="text" placeholder="Username"/>
+        <Form.Control type="text" placeholder="Username" onChange={setUsername}/>
       </Form.Group>
 
       <Form.Group>

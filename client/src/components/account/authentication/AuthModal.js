@@ -9,9 +9,9 @@ import { beginAuthAction } from '../../../actions/authAction';
 class AuthModal extends React.Component {
   formType() {
     if(this.props.authForm === 0) {
-      return <LoginForm switchFormType={this.switchFormType}/>
+      return <LoginForm switchFormType={this.switchFormType} setUsername={this.setUsername} setPassword={this.setPassword}/>
     }
-    return <RegisterForm switchFormType={this.switchFormType}/>
+    return <RegisterForm switchFormType={this.switchFormType} setUsername={this.setUsername} setPassword={this.setPassword} setEmail={this.setEmail}/>
   }
 
   handleClose = () => {
@@ -27,6 +27,29 @@ class AuthModal extends React.Component {
     }
   }
 
+  setUsername = (username) => {
+    this.setState({
+      username: username
+    });
+  }
+
+  setPassword = (password) => {
+    this.setState({
+      password: password
+    });
+  }
+
+  setEmail= (email) => {
+    this.setState({
+      email: email
+    });
+  }
+
+  submitHandler = () => {
+    console.log("Submitting auth form");
+    console.log(this.props.authTitle);
+  }
+
   render() {
     return (
       <Modal show={this.props.authShow} aria-labelledby="contained-modal-title-vcenter" centered onHide={this.handleClose}>
@@ -39,7 +62,7 @@ class AuthModal extends React.Component {
           {this.formType()}
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit">{this.props.authTitle}</Button>
+          <Button type="submit" onClick={this.submitHandler}>{this.props.authTitle}</Button>
         </Modal.Footer>
       </Modal>
     );
