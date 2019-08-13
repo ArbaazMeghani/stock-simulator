@@ -7,6 +7,15 @@ import { connect } from 'react-redux';
 import { beginAuthAction } from '../../../actions/authAction';
 
 class AuthModal extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      email: '',
+      password: '',
+    }
+  }
+
   formType() {
     if(this.props.authForm === 0) {
       return <LoginForm switchFormType={this.switchFormType} setUsername={this.setUsername} setPassword={this.setPassword}/>

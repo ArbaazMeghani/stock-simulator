@@ -8,15 +8,19 @@ const style = {
   marginTop: "10ox"
 }
 
+const fieldChange = (event, setField) => {
+  setField(event.target.value);
+}
+
 export default function LoginForm( { switchFormType, setUsername, setPassword } ) {
   return (
     <Form>
       <Form.Group style={style}>
-        <Form.Control type="text" placeholder="Username" onChange={setUsername}/>
+        <Form.Control type="text" placeholder="Username" onChange={(event) => fieldChange(event, setUsername)}/>
       </Form.Group>
 
       <Form.Group>
-        <Form.Control style={style} type="password" placeholder="Password"/>
+        <Form.Control style={style} type="password" placeholder="Password" onChange={(event) => fieldChange(event, setPassword)}/>
       </Form.Group>
 
       <Form.Group style={style}>

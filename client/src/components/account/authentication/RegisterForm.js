@@ -8,19 +8,23 @@ const style = {
   marginTop: "10ox"
 }
 
-export default function RegisterForm( {switchFormType} ) {
+const fieldChange = (event, setField) => {
+  setField(event.target.value);
+}
+
+export default function RegisterForm( {switchFormType, setUsername, setPassword, setEmail} ) {
   return (
     <Form>
       <Form.Group style={style}>
-        <Form.Control type="email" placeholder="E-mail"/>
+        <Form.Control type="email" placeholder="E-mail" onChange={(event) => fieldChange(event, setEmail)}/>
       </Form.Group>
 
       <Form.Group style={style}>
-        <Form.Control type="text" placeholder="Username"/>
+        <Form.Control type="text" placeholder="Username" onChange={(event) => fieldChange(event, setUsername)}/>
       </Form.Group>
 
       <Form.Group>
-        <Form.Control style={style} type="password" placeholder="Password"/>
+        <Form.Control style={style} type="password" placeholder="Password" onChange={(event) => fieldChange(event, setPassword)}/>
       </Form.Group>
 
       <Form.Group>
