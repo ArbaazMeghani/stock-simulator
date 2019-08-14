@@ -5,13 +5,12 @@ import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import { Mutation } from 'react-apollo';
 import { connect } from 'react-redux';
-import { beginAuthAction } from '../../../actions/authAction';
+import { beginAuthAction, updateTokenAction } from '../../../actions/authAction';
 import gql from 'graphql-tag';
 
 const signUp = gql`
   mutation signUp($username: String!, $email: String!, $password: String!) {
     signup(username: $username, email: $email, password: $password) {
-      token
       user {
         id
       }
@@ -69,7 +68,7 @@ class AuthModal extends React.Component {
     });
   }
 
-  setEmail= (email) => {
+  setEmail = (email) => {
     this.setState({
       email: email
     });
@@ -109,7 +108,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  beginAuthAction: (authInfo) => dispatch(beginAuthAction(authInfo))
+  beginAuthAction: (authInfo) => dispatch(beginAuthAction(authInfo)),
+  updateTokenAction: (token) => dispatch(updateTokenAction(token))
  })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthModal);
