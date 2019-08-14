@@ -19,13 +19,7 @@ export default (state = defaultState, action) => {
         show: action.payload.show,
         title: action.payload.title,
         formType: action.payload.formType
-      }
-    case 'USER_INFO':
-      return {
-        username: action.payload.username,
-        email: action.payload.email,
-        password: action.payload.password
-      }
+      };
     default:
       return state;
   }
