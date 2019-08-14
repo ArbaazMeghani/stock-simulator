@@ -3,8 +3,29 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
+import { Mutation } from 'react-apollo';
 import { connect } from 'react-redux';
 import { beginAuthAction } from '../../../actions/authAction';
+import gql from 'graphql-tag';
+
+const signUp = gql`
+  mutation signUp($username: String!, $email: String!, $password: String!) {
+    signUp(username: $username, email: $email, password: $password) {
+      token
+      user {
+        id
+      }
+    }
+  }
+`;
+
+const login = gql`
+  mutation login($username: String!, $password: String!) {
+    login(username: $username, password: $password) {
+      token
+    }
+  }
+`;
 
 class AuthModal extends React.Component {
   constructor(props) {
