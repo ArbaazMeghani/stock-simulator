@@ -32,7 +32,7 @@ class AuthModal extends React.Component {
     this.state = {
       username: '',
       email: '',
-      password: '',
+      password: ''
     }
   }
 
@@ -41,6 +41,29 @@ class AuthModal extends React.Component {
       return <LoginForm switchFormType={this.switchFormType} setUsername={this.setUsername} setPassword={this.setPassword}/>
     }
     return <RegisterForm switchFormType={this.switchFormType} setUsername={this.setUsername} setPassword={this.setPassword} setEmail={this.setEmail}/>
+  }
+
+  loginButton() {
+    return (
+      <Mutation mutation={login} variables={ {username: this.state.username, password: this.state.password }}>
+        {test => <Button onClick={test}>{this.props.authTitle}</Button>}
+      </Mutation>
+    );
+  }
+
+  signupButton() {
+    return (
+      <Mutation mutation={signUp} variables={{}}>
+        {() => <Button onClick={this.signupHandler}>{this.props.authTitle}</Button>}
+      </Mutation>
+    );
+  }
+
+  formButton() {
+    if(this.props.authForm === 0) {
+      return this.loginButton();
+    }
+    return this.signupButton();
   }
 
   handleClose = () => {
@@ -74,9 +97,13 @@ class AuthModal extends React.Component {
     });
   }
 
-  submitHandler = () => {
-    console.log("Submitting auth form");
-    console.log(this.props.authTitle);
+  loginHandler = (event) => {
+    event.preventDefault();
+    console.log('Login Clicked');
+  }
+
+  signupHandler = (event) => {
+    event.preventDefault();
   }
 
   render() {
@@ -91,7 +118,7 @@ class AuthModal extends React.Component {
           {this.formType()}
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit" onClick={this.submitHandler}>{this.props.authTitle}</Button>
+          {this.formButton()}
         </Modal.Footer>
       </Modal>
     );
