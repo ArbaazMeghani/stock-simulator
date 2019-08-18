@@ -8,21 +8,15 @@ import { connect } from 'react-redux';
 import { beginAuthAction, updateTokenAction } from '../../../actions/authAction';
 import gql from 'graphql-tag';
 
-const signUp = gql`
-  mutation signUp($username: String!, $email: String!, $password: String!) {
-    signup(username: $username, email: $email, password: $password) {
-      user {
-        id
-      }
-    }
+const signup = gql`
+  mutation signup($username: String!, $email: String!, $password: String!) {
+    signup(username: $username, email: $email, password: $password)
   }
 `;
 
 const login = gql`
   mutation login($username: String!, $password: String!) {
-    login(username: $username, password: $password) {
-      token
-    }
+    login(username: $username, password: $password)
   }
 `;
 
@@ -45,15 +39,15 @@ class AuthModal extends React.Component {
 
   loginButton() {
     return (
-      <Mutation mutation={login} variables={ {username: this.state.username, password: this.state.password }}>
-        {test => <Button onClick={test}>{this.props.authTitle}</Button>}
+      <Mutation mutation={login} variables={ {username: this.state.username, password: this.state.password} }>
+        {loginMutation => <Button onClick={() => this.loginHandler(loginMutation)}>{this.props.authTitle}</Button>}
       </Mutation>
     );
   }
 
   signupButton() {
     return (
-      <Mutation mutation={signUp} variables={{}}>
+      <Mutation mutation={signup} variables={{}}>
         {() => <Button onClick={this.signupHandler}>{this.props.authTitle}</Button>}
       </Mutation>
     );
@@ -97,9 +91,11 @@ class AuthModal extends React.Component {
     });
   }
 
-  loginHandler = (event) => {
-    event.preventDefault();
-    console.log('Login Clicked');
+  loginHandler = (loginMutation) => {
+    loginMutation()
+    .then(res => {
+      this.props.updateTokenAction(res.data.login)
+    })
   }
 
   signupHandler = (event) => {
