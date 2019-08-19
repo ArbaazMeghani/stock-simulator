@@ -3,11 +3,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import AuthButtons from './account/authentication/AuthButtons';
 import { connect } from 'react-redux';
 import Profile from './account/profile/Profile';
+import jwtDecode from 'jwt-decode';
 
 class Header extends React.Component {
 
   accountArea() {
     if(this.props.token) {
+      const decoded = jwtDecode(this.props.token);
       return <Profile />;
     }
     return <AuthButtons />;
