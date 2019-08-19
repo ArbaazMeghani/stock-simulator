@@ -4,12 +4,14 @@ import AuthButtons from './account/authentication/AuthButtons';
 import { connect } from 'react-redux';
 import Profile from './account/profile/Profile';
 import jwtDecode from 'jwt-decode';
+import { saveUserAction } from '../actions/authAction';
 
 class Header extends React.Component {
 
   accountArea() {
     if(this.props.token) {
       const decoded = jwtDecode(this.props.token);
+      this.props.saveUserAction(decoded.user);
       return <Profile username={decoded.user.username}/>;
     }
     return <AuthButtons />;
@@ -32,4 +34,8 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps, null)(Header);
+const mapDispatchToProps = dispatch => ({
+  saveUserAction: (user) => dispatch(saveUserAction(user))
+ })
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
