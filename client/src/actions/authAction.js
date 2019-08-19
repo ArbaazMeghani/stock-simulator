@@ -7,3 +7,7 @@ export const updateTokenAction = (token) => dispatch => {
 export const beginAuthAction = (authInfo) => dispatch => {
   baseAction('BEGIN_AUTH', authInfo, dispatch);
 }
+
+export const saveUserAction = (user) => dispatch => {
+  baseAction('SAVE_USER', user, dispatch);
+}

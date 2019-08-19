@@ -3,9 +3,7 @@ const defaultState = {
   show: false,
   title: '',
   formType: 0,
-  username: undefined,
-  email: undefined,
-  password: undefined
+  user: undefined
 }
 
 export default (state = defaultState, action) => {
@@ -19,6 +17,10 @@ export default (state = defaultState, action) => {
         show: action.payload.show,
         title: action.payload.title,
         formType: action.payload.formType
+      };
+    case 'SAVE_USER':
+      return {
+        user: action.payload
       };
     default:
       return state;

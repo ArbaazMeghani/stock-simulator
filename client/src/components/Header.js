@@ -10,7 +10,7 @@ class Header extends React.Component {
   accountArea() {
     if(this.props.token) {
       const decoded = jwtDecode(this.props.token);
-      return <Profile />;
+      return <Profile username={decoded.user.username}/>;
     }
     return <AuthButtons />;
   }
