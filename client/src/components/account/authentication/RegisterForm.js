@@ -32,7 +32,7 @@ export default function RegisterForm( {switchFormType, setUsername, setPassword,
       </Form.Group>
 
       <Form.Group style={style}>
-        <a href="#" onClick={switchFormType}> Already have an account? Login instead -> </a>
+        <a href="placeholder" onClick={switchFormType}> Already have an account? Login instead -> </a>
       </Form.Group>
     </Form>
   );
