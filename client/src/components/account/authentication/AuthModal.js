@@ -10,7 +10,10 @@ import gql from 'graphql-tag';
 
 const signup = gql`
   mutation signup($username: String!, $email: String!, $password: String!) {
-    signup(username: $username, email: $email, password: $password)
+    signup(username: $username, email: $email, password: $password) {
+      _id,
+      username
+    }
   }
 `;
 
@@ -39,7 +42,10 @@ class AuthModal extends React.Component {
 
   loginButton() {
     return (
-      <Mutation mutation={login} variables={ {username: this.state.username, password: this.state.password} }>
+      <Mutation mutation={login} variables={{
+        username: this.state.username,
+        password: this.state.password
+      }}>
         {loginMutation => <Button onClick={() => this.loginHandler(loginMutation)}>{this.props.authTitle}</Button>}
       </Mutation>
     );
@@ -47,8 +53,12 @@ class AuthModal extends React.Component {
 
   signupButton() {
     return (
-      <Mutation mutation={signup} variables={{}}>
-        {() => <Button onClick={this.signupHandler}>{this.props.authTitle}</Button>}
+      <Mutation mutation={signup} variables={{
+        email: this.state.email,
+        username: this.state.username,
+        password: this.state.password
+      }}>
+        {signupMutation => <Button onClick={() => this.signupHandler(signupMutation)}>{this.props.authTitle}</Button>}
       </Mutation>
     );
   }
@@ -98,8 +108,11 @@ class AuthModal extends React.Component {
     })
   }
 
-  signupHandler = (event) => {
-    event.preventDefault();
+  signupHandler = (signupMutation) => {
+    signupMutation()
+    .then(res => {
+      this.handleClose();
+    });
   }
 
   render() {
