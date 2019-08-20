@@ -14,6 +14,9 @@ let userSchema = mongoose.Schema({
   password: {
     type: String,
     required: true,
+  },
+  watchList: {
+    type: [String]
   }
 });
 

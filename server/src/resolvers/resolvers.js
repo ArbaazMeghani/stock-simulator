@@ -21,7 +21,7 @@ const resolvers = {
       
       const token = jwt.sign(
         {
-          user: lodash.pick(user, ['_id', 'username'])
+          user: lodash.pick(user, ['_id', 'username', 'watchList'])
         },
         SECRET,
         {

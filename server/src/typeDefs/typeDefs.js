@@ -9,6 +9,7 @@ const typeDefs = gql`
     _id: String
     email: String
     username: String
+    watchList: [String]
   }
 
   type Mutation {
