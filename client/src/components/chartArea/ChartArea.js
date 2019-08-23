@@ -4,6 +4,20 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
+import gql from 'graphql-tag';
+import { Mutation } from 'react-apollo';
+
+const addToWatchList = gql`
+  mutation addToWatchList($symbol: String!) {
+    addToWatchList(symbol: $symbol)
+  }
+`;
+
+const removeFromWatchList = gql`
+  mutation removeFromWatchList($symbol: String!) {
+    removeFromWatchList(symbol: $symbol)
+  }
+`;
 
 class ChartArea extends React.Component {
   render() {
@@ -26,9 +40,10 @@ class ChartArea extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { simpleReducer } = state;
+  const { simpleReducer, authReducer } = state;
   return {
-    symbol: simpleReducer.symbol
+    symbol: simpleReducer.symbol,
+    user: authReducer.user
   };
 }
 
