@@ -4,7 +4,15 @@ let lodash = require('lodash');
 
 const authResolvers = {
   Query: {
-    currentUser: (root, args, { user }) => user
+    currentUser: async (root, args, { usersModel, user }) => {
+      const existingUser = await usersModel.findOne({username: user.username});
+
+      if(!existingUser) {
+        throw new Error('No User Foudn');
+      }
+
+      return existingUser;
+    }
   },
 
   Mutation : {
