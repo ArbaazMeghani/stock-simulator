@@ -20,6 +20,42 @@ const removeFromWatchList = gql`
 `;
 
 class ChartArea extends React.Component {
+  watchButton = () => {
+    return (
+      <Mutation mutation={addToWatchList} variables={{symbol: this.props.symbol}}>
+        {watch => <Button onClick={() => this.watchHandler(watch)} variant="outline-success">
+          Watch
+        </Button>}
+      </Mutation>
+    );
+  }
+
+  unwatchButton = () => {
+    return (
+      <Mutation mutation={addToWatchList} variables={{symbol: this.props.symbol}}>
+        {unwatch => <Button onClick={unwatch} variant="outline-success">
+          Watch
+        </Button>}
+      </Mutation>
+    );
+  }
+
+  watchListButton = () => {
+    if(this.props.user && this.props.symbol in this.props.user.watchList) {
+      return this.unwatchButton();
+    }
+    return this.watchButton();
+  }
+
+  watchHandler = (watch) => {
+    if(this.props.user) {
+      watch();
+    }
+    else {
+      console.log("Not Logged In");
+    }
+  }
+
   render() {
     return (
       <div className="mt-2">
@@ -28,9 +64,7 @@ class ChartArea extends React.Component {
             <h5> Symbol: {this.props.symbol} </h5>
           </Col>
           <Col className="mx-4">
-            <Button variant="outline-success">
-              Watch
-            </Button>
+            {this.watchListButton()}
           </Col>
         </Row>
         <MainChart />

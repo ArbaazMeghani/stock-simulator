@@ -1,5 +1,4 @@
 const defaultState = {
-  token: undefined,
   show: false,
   title: '',
   formType: 0,
@@ -8,10 +7,6 @@ const defaultState = {
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case 'AUTH_TOKEN':
-      return {
-        token: action.payload
-      };
     case 'BEGIN_AUTH':
       return {
         show: action.payload.show,

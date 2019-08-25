@@ -22,8 +22,9 @@ class App extends React.Component {
       authorization: this.props.token
     },
     onError: ({ networkError, graphQLErrors }) => {
-      console.log('graphQLErrors', graphQLErrors)
-      console.log('networkError', networkError)
+      console.log(this.props.token);
+      console.log('graphQLErrors', graphQLErrors);
+      console.log('networkError', networkError);
     }
   });
 
