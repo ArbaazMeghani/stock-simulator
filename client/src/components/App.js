@@ -20,7 +20,6 @@ const httpLink = new HttpLink({ uri });
 class App extends React.Component {
   authLink = new ApolloLink((operation, forward) => {
     const token = this.props.token;
-    console.log(token);
     
     operation.setContext({
       headers: {
@@ -28,15 +27,13 @@ class App extends React.Component {
       }
     });
   
-    // Call the next link in the middleware chain.
     return forward(operation);
   });
 
   client = new ApolloClient({
-    link: this.authLink.concat(httpLink), // Chain it with the HttpLink
+    link: this.authLink.concat(httpLink),
     cache: new InMemoryCache(),
     onError: ({ networkError, graphQLErrors }) => {
-      console.log(this.props.token);
       console.log('graphQLErrors', graphQLErrors);
       console.log('networkError', networkError);
     }
