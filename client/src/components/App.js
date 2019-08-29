@@ -1,5 +1,5 @@
 import React from 'react';
-import ApolloClient from 'apollo-boost';
+import { ApolloClient, ApolloLink, InMemoryCache, HttpLink } from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo'; 
 import Header from './Header';
 import Footer from './Footer';
@@ -15,12 +15,26 @@ else {
   uri = 'http://localhost:4000/graphql'
 }
 
+const httpLink = new HttpLink({ uri });
+
 class App extends React.Component {
+  authLink = new ApolloLink((operation, forward) => {
+    const token = this.props.token;
+    console.log(token);
+    
+    operation.setContext({
+      headers: {
+        authorization: token
+      }
+    });
+  
+    // Call the next link in the middleware chain.
+    return forward(operation);
+  });
+
   client = new ApolloClient({
-    uri,
-    headers: {
-      authorization: this.props.token
-    },
+    link: this.authLink.concat(httpLink), // Chain it with the HttpLink
+    cache: new InMemoryCache(),
     onError: ({ networkError, graphQLErrors }) => {
       console.log(this.props.token);
       console.log('graphQLErrors', graphQLErrors);
