@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
+import { saveUserAction } from '../../actions/authAction';
 
 const addToWatchList = gql`
   mutation addToWatchList($symbol: String!) {
@@ -32,16 +33,25 @@ class ChartArea extends React.Component {
 
   unwatchButton = () => {
     return (
-      <Mutation mutation={addToWatchList} variables={{symbol: this.props.symbol}}>
-        {unwatch => <Button onClick={unwatch} variant="outline-success">
-          Watch
+      <Mutation mutation={removeFromWatchList} variables={{symbol: this.props.symbol}}>
+        {unwatch => <Button onClick={() => this.unwatchHandler(unwatch)} variant="outline-success">
+          Unwatch
         </Button>}
       </Mutation>
     );
   }
 
   watchListButton = () => {
-    if(this.props.user && this.props.symbol in this.props.user.watchList) {
+    let exists = false;
+    if(this.props.user) {
+      for(let i = 0; i < this.props.user.watchList.length; i++) {
+        if(this.props.symbol === this.props.user.watchList[i]) {
+          exists = true;
+        }
+      }
+    }
+
+    if(exists) {
       return this.unwatchButton();
     }
     return this.watchButton();
@@ -50,6 +60,15 @@ class ChartArea extends React.Component {
   watchHandler = (watch) => {
     if(this.props.user) {
       watch();
+    }
+    else {
+      console.log("Not Logged In");
+    }
+  }
+
+  unwatchHandler = (unwatch) => {
+    if(this.props.user) {
+      unwatch();
     }
     else {
       console.log("Not Logged In");
@@ -81,4 +100,8 @@ const mapStateToProps = state => {
   };
 }
 
-export default connect(mapStateToProps, null)(ChartArea);
+const mapDispatchToProps = dispatch => ({
+  saveUserAction: (user) => dispatch(saveUserAction(user))
+ })
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChartArea);
