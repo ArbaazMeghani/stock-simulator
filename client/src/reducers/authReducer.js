@@ -19,7 +19,13 @@ export default (state = defaultState, action) => {
       };
     case 'ADD_TO_WATCHLIST':
       state.user.watchList.push(action.payload);
-      return state;
+      return {
+        user: {
+          _id: state.user._id,
+          username: state.user.username,
+          watchList: state.user.watchList
+        }
+      }
     default:
       return state;
   }
