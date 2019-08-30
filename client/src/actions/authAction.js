@@ -11,3 +11,7 @@ export const beginAuthAction = (authInfo) => dispatch => {
 export const saveUserAction = (user) => dispatch => {
   baseAction('SAVE_USER', user, dispatch);
 }
+
+export const addSymbolToWatchList = (symbol) => dispatch => {
+  baseAction('ADD_TO_WATCHLIST', symbol, dispatch);
+}

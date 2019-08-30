@@ -17,6 +17,9 @@ export default (state = defaultState, action) => {
       return {
         user: action.payload
       };
+    case 'ADD_TO_WATCHLIST':
+      state.user.watchList.push(action.payload);
+      return state;
     default:
       return state;
   }
