@@ -26,6 +26,17 @@ export default (state = defaultState, action) => {
           watchList: state.user.watchList
         }
       }
+    case "REMOVE_FROM_WATCHLIST":
+      state.user.watchList = state.user.watchList.filter(item => {
+        return item !== action.payload;
+      });
+      return {
+        user: {
+          _id: state.user._id,
+          username: state.user.username,
+          watchList: state.user.watchList
+        }
+      }
     default:
       return state;
   }
