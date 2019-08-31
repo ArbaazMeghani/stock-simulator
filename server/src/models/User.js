@@ -17,6 +17,13 @@ let userSchema = mongoose.Schema({
   },
   watchList: {
     type: [String]
+  },
+  stocks: {
+    type: [{
+      symbol: String,
+      price: Number,
+      quantiy: Number
+    }]
   }
 });
 

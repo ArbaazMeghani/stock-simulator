@@ -29,7 +29,7 @@ const authResolvers = {
       
       const token = jwt.sign(
         {
-          user: lodash.pick(user, ['_id', 'username', 'watchList'])
+          user: lodash.pick(user, ['_id', 'username', 'watchList', 'stocks'])
         },
         SECRET,
         {
