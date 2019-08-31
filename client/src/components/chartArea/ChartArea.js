@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { connect } from 'react-redux';
 import gql from 'graphql-tag';
 import { Mutation } from 'react-apollo';
-import { addSymbolToWatchList } from '../../actions/authAction';
+import { addSymbolToWatchList, removeSymbolFromWatchList } from '../../actions/authAction';
 
 const addToWatchList = gql`
   mutation addToWatchList($symbol: String!) {
@@ -70,6 +70,7 @@ class ChartArea extends React.Component {
   unwatchHandler = (unwatch) => {
     if(this.props.user) {
       unwatch();
+      this.props.removeSymbolFromWatchList(this.props.symbol);
     }
     else {
       console.log("Not Logged In");
@@ -102,7 +103,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addSymbolToWatchList: (symbol) => dispatch(addSymbolToWatchList(symbol))
+  addSymbolToWatchList: (symbol) => dispatch(addSymbolToWatchList(symbol)),
+  removeSymbolFromWatchList: (symbol) => dispatch(removeSymbolFromWatchList(symbol))
  })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChartArea);

@@ -15,3 +15,7 @@ export const saveUserAction = (user) => dispatch => {
 export const addSymbolToWatchList = (symbol) => dispatch => {
   baseAction('ADD_TO_WATCHLIST', symbol, dispatch);
 }
+
+export const removeSymbolFromWatchList = (symbol) => dispatch => {
+  baseAction('REMOVE_FROM_WATCHLIST', symbol, dispatch);
+}
