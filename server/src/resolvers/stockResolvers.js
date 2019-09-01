@@ -28,7 +28,34 @@ const stockResolvers = {
     },
 
     sellStock: async (root, { symbol, price, quantity }, { usersModel, user }) => {
+      const existingUser = await usersModel.findOne({username: user.username});
 
+      if(!existingUser) {
+        throw new Error("User not found");
+      }
+
+      existingStock = undefined;
+
+      for(let i = 0; i < existingUser.stocks.length; i++) {
+        if(existingUser.stocks[i].symbol === symbol) {
+          existingStock = existingUser.stocks[i];
+        }
+      }
+
+      if(!existingStock) {
+        throw new Error("Stock now owned");
+      }
+      else {
+        if(existingStock.quantity < quantity) {
+          throw new Error("Cannot sell more than you own");
+        }
+        else {
+          existingStock.quantity -= quantity;
+        }
+      }
+
+      existingUser.save();
+      return true
     }
   }
 }
