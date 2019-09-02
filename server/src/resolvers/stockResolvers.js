@@ -27,6 +27,8 @@ const stockResolvers = {
         existingUser.stocks.push({symbol: symbol, price: price, quantity: quantity});
       }
 
+      existingUser.balance -= quantity * price;
+
       existingUser.save();
       return true;
     },
