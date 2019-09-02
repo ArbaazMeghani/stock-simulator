@@ -16,6 +16,7 @@ const typeDefs = gql`
     _id: String
     email: String
     username: String
+    balance: Float
     watchList: [String]
     stocks: [StockInfo]
   }
@@ -27,6 +28,8 @@ const typeDefs = gql`
     removeFromWatchList(symbol: String!): Boolean
     buyStock(symbol: String!, price: Float!, quantity: Int!): Boolean
     sellStock(symbol: String!, price: Float!, quantity: Int!): Boolean
+    addBalance(balance: Float!): Float!
+    subtractBalance(balance: Float): Float!
   }
 `;
 

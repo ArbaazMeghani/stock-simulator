@@ -15,6 +15,10 @@ let userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  balance: {
+    type: Number,
+    required: true
+  },
   watchList: {
     type: [String]
   },

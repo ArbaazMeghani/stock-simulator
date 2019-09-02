@@ -23,6 +23,7 @@ const authResolvers = {
 
       existingUser.watchList = [];
       existingUser.stocks = [];
+      existingUser.balance = 10000;
 
       existingUser.save();
 
@@ -44,7 +45,7 @@ const authResolvers = {
       
       const token = jwt.sign(
         {
-          user: lodash.pick(user, ['_id', 'username', 'watchList', 'stocks'])
+          user: lodash.pick(user, ['_id', 'username', 'balance', 'watchList', 'stocks'])
         },
         SECRET,
         {
@@ -64,7 +65,8 @@ const authResolvers = {
       const user = await new usersModel({
         email,
         username,
-        password: hash
+        password: hash,
+        balance: 10000
       }).save();
 
       return user; 

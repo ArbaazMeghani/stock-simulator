@@ -1,33 +1,31 @@
-const watchListResolvers = {
+const balanceResolvers = {
   Mutation: {
-    addToWatchList: async (root, { symbol }, { usersModel, user }) => {
+    addBalance: async (root, { balance }, { usersModel, user }) => {
       const existingUser = await usersModel.findOne({username: user.username});
 
       if(!existingUser) {
         throw new Error("User not found");
       }
 
-      existingUser.watchList.push(symbol);
+      existingUser.balance += balance;
 
       existingUser.save();
-      return true
+      return existingUser.balance;
     },
 
-    removeFromWatchList: async (root, { symbol }, { usersModel, user }) => {
+    subtractBalance: async (root, { balance }, { usersModel, user }) => {
       const existingUser = await usersModel.findOne({username: user.username});
 
       if(!existingUser) {
         throw new Error("User not found");
       }
 
-      existingUser.watchList = existingUser.watchList.filter(item => {
-        return item != symbol;
-      });
+      existingUser.balance -= balance;
 
       existingUser.save();
-      return true;
+      return existingUser.balance;
     }
   }
 }
 
-module.exports = watchListResolvers
+module.exports = balanceResolvers;

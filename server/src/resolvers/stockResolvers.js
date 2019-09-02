@@ -60,7 +60,7 @@ const stockResolvers = {
       }
 
       existingUser.save();
-      return true
+      return true;
     }
   }
 }
