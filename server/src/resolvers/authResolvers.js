@@ -8,8 +8,23 @@ const authResolvers = {
       const existingUser = await usersModel.findOne({username: user.username});
 
       if(!existingUser) {
-        throw new Error('No User Foudn');
+        throw new Error('No User Found');
       }
+
+      return existingUser;
+    },
+
+    clearUser: async (root, args, { usersModel, user }) => {
+      const existingUser = await usersModel.findOne({username: user.username});
+
+      if(!existingUser) {
+        throw new Error('No User Found');
+      }
+
+      existingUser.watchList = [];
+      existingUser.stocks = [];
+
+      existingUser.save();
 
       return existingUser;
     }

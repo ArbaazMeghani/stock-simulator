@@ -22,7 +22,7 @@ let userSchema = mongoose.Schema({
     type: [{
       symbol: String,
       price: Number,
-      quantiy: Number
+      quantity: Number
     }]
   }
 });

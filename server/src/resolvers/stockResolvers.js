@@ -20,7 +20,7 @@ const stockResolvers = {
         existingStock.quantity += quantity;
       }
       else {
-        existingUser.stocks.append({symbol: symbol, price: price, quantity: quantity});
+        existingUser.stocks.push({symbol: symbol, price: price, quantity: quantity});
       }
 
       existingUser.save();
