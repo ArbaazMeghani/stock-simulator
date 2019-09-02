@@ -16,7 +16,7 @@ const stockResolvers = {
       }
 
       if(existingStock) {
-        existingStock.price = ((existingUser.price * existingUser.quantity) + (price * quantity))/2;
+        existingStock.price = ((existingUser.price * existingUser.quantity) + (price * quantity))/(quantity + existingUser.quantity);
         existingStock.quantity += quantity;
       }
       else {
@@ -60,4 +60,4 @@ const stockResolvers = {
   }
 }
 
-module.exports = stockResolvers
+module.exports = stockResolvers;
