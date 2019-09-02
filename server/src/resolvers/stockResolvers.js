@@ -51,6 +51,11 @@ const stockResolvers = {
         }
         else {
           existingStock.quantity -= quantity;
+          if(existingStock.quantity == 0) {
+            existingUser.stocks = existingUser.stocks.filter(stock => {
+              return stock.symbol !== symbol;
+            })
+          }
         }
       }
 
