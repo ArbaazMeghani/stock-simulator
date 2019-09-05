@@ -3,8 +3,23 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import { Mutation } from 'react-apollo';
+import { connect } from 'react-redux';
+import gql from 'graphql-tag';
 
-export default class TransactionPane extends React.Component {
+const buyStock = gql`
+  mutation buyStock($symbol: String!, $price: Float!, $quantity: Int!) {
+    buyStock(username: $symbol, email: $price, password: $quantity)
+  }
+`;
+
+const sellStock = gql`
+  mutation sellStock($symbol: String!, $price: Float!, $quantity: Int!) {
+    sellStock(username: $symbol, email: $price, password: $quantity)
+  }
+`;
+
+class TransactionPane extends React.Component {
   render() {
     return (
       <div className="mt-5">
@@ -46,3 +61,13 @@ export default class TransactionPane extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  
+}
+
+const mapDispatchToProps = dispatch => ({
+
+})
+
+ export default connect(mapStateToProps, mapDispatchToProps)(TransactionPane);
