@@ -34,7 +34,16 @@ class TransactionPane extends React.Component {
             </Col>
           </Form.Group>
 
-          <Form.Group className="mt-5" as={Row}>
+          <Form.Group as={Row}>
+            <Form.Label xs={6} column>
+              Price
+            </Form.Label>
+            <Col>
+              <Form.Control type="number" readOnly defaultValue={0} />
+            </Col>
+          </Form.Group>
+
+          <Form.Group className="mt-4" as={Row}>
             <Form.Label xs={6} column>
               Quantity
             </Form.Label>
