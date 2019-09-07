@@ -19,3 +19,11 @@ export const addSymbolToWatchList = (symbol) => dispatch => {
 export const removeSymbolFromWatchList = (symbol) => dispatch => {
   baseAction('REMOVE_FROM_WATCHLIST', symbol, dispatch);
 }
+
+export const buyStock = (stock) => dispatch => {
+  baseAction('BUY_STOCK', stock, dispatch);
+}
+
+export const sellStock = (stock) => dispatch => {
+  baseAction('SELL_STOCK', stock, dispatch);
+}

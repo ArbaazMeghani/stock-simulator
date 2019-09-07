@@ -37,6 +37,10 @@ export default (state = defaultState, action) => {
           watchList: state.user.watchList
         }
       }
+    case 'BUY_STOCK':
+      return state;
+    case "SELL_STOCK":
+      return state;
     default:
       return state;
   }
