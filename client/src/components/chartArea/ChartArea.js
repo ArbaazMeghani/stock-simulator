@@ -105,6 +105,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   addSymbolToWatchList: (symbol) => dispatch(addSymbolToWatchList(symbol)),
   removeSymbolFromWatchList: (symbol) => dispatch(removeSymbolFromWatchList(symbol))
- })
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChartArea);

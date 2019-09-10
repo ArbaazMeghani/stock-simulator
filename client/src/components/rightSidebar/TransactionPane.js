@@ -1,70 +1,51 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import { Mutation } from 'react-apollo';
 import { connect } from 'react-redux';
-import gql from 'graphql-tag';
-
-const buyStock = gql`
-  mutation buyStock($symbol: String!, $price: Float!, $quantity: Int!) {
-    buyStock(username: $symbol, email: $price, password: $quantity)
-  }
-`;
-
-const sellStock = gql`
-  mutation sellStock($symbol: String!, $price: Float!, $quantity: Int!) {
-    sellStock(username: $symbol, email: $price, password: $quantity)
-  }
-`;
+import TransactionInfo from './TransactionInfo';
+import TransactionOption from './TransactionOption';
+import TransactionButtons from './TransactionButtons';
 
 class TransactionPane extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      quantity: 0
+    };
+  }
+
+  findOwnedStock() {
+    let stocks = undefined;
+    if(this.props.user) {
+      for(let i = 0; i < this.props.user.stocks.length; i++) {
+        if(this.props.user.stocks[i].symbol === this.props.symbol) {
+          stocks = this.props.user.stocks[i];
+        }
+      }
+    }
+    return stocks;
+  }
+
+  quantityUpdateHandler = (event) => {
+    this.setState({
+      quantity: event.target.value
+    });
+  }
+
   render() {
+    const stocks = this.findOwnedStock();
+    let shares = 0;
+    let price = 0;
+    if(stocks) {
+      shares = stocks.shares;
+      price = stocks.price
+    }
     return (
       <div className="mt-5">
         <h4> Transaction </h4>
         <Form className="mt-4">
-          <Form.Group as={Row}>
-            <Form.Label xs={6} column>
-              Shares
-            </Form.Label>
-            <Col>
-              <Form.Control type="number" readOnly defaultValue={0} />
-            </Col>
-          </Form.Group>
-
-          <Form.Group as={Row}>
-            <Form.Label xs={6} column>
-              Price
-            </Form.Label>
-            <Col>
-              <Form.Control type="number" readOnly defaultValue={0} />
-            </Col>
-          </Form.Group>
-
-          <Form.Group className="mt-4" as={Row}>
-            <Form.Label xs={6} column>
-              Quantity
-            </Form.Label>
-            <Col>
-              <Form.Control type="number" defaultValue={0} />
-            </Col>
-          </Form.Group>
-
-          <Form.Group as={Row}>
-            <Col>
-              <Button variant="success" className="mr-auto mx-4">
-                Buy
-              </Button>
-            </Col>
-
-            <Col>
-              <Button variant="danger" className="mx-4">
-                Sell
-              </Button>
-            </Col>
-          </Form.Group>
+          <TransactionInfo shares={shares} price={price}/>
+          <TransactionOption onChangeHandler={this.quantityUpdateHandler} />
+          <TransactionButtons quantity={this.state.quantity}/>
         </Form>
       </div>
     );
@@ -72,11 +53,11 @@ class TransactionPane extends React.Component {
 }
 
 const mapStateToProps = state => {
-  
+  const { simpleReducer, authReducer } = state;
+  return {
+    symbol: simpleReducer.symbol,
+    user: authReducer.user
+  };
 }
 
-const mapDispatchToProps = dispatch => ({
-
-})
-
- export default connect(mapStateToProps, mapDispatchToProps)(TransactionPane);
+ export default connect(mapStateToProps, null)(TransactionPane);
