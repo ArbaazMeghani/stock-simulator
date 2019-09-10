@@ -21,9 +21,7 @@ export default (state = defaultState, action) => {
       state.user.watchList.push(action.payload);
       return {
         user: {
-          _id: state.user._id,
-          username: state.user.username,
-          watchList: state.user.watchList
+         ...state.user
         }
       }
     case "REMOVE_FROM_WATCHLIST":
@@ -32,9 +30,7 @@ export default (state = defaultState, action) => {
       });
       return {
         user: {
-          _id: state.user._id,
-          username: state.user.username,
-          watchList: state.user.watchList
+          ...state.user
         }
       }
     case 'BUY_STOCK':
