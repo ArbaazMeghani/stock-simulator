@@ -10,13 +10,13 @@ import Button from 'react-bootstrap/Button';
 
 const buyShares = gql`
   mutation buyStock($symbol: String!, $price: Float!, $quantity: Int!) {
-    buyStock(username: $symbol, email: $price, password: $quantity)
+    buyStock(symbol: $symbol, price: $price, quantity: $quantity)
   }
 `;
 
 const sellShares = gql`
   mutation sellStock($symbol: String!, $price: Float!, $quantity: Int!) {
-    sellStock(username: $symbol, email: $price, password: $quantity)
+    sellStock(symbol: $symbol, price: $price, quantity: $quantity)
   }
 `;
 
@@ -26,9 +26,13 @@ class TransactionButtons extends React.Component {
       <>
         <Form.Group as={Row}>
           <Col>
-            <Button variant="success" className="mr-auto mx-4">
-              Buy
-            </Button>
+            <Mutation mutation={buyShares} variables={{
+              symbol: this.props.symbol,
+              price: 100.0,
+              quantity: parseInt(this.props.quantity)
+            }}>
+              {buy => <Button onClick={buy} variant="success" className="mr-auto mx-4">Buy</Button>}
+            </Mutation>
           </Col>
 
           <Col>
