@@ -36,9 +36,13 @@ class TransactionButtons extends React.Component {
           </Col>
 
           <Col>
-            <Button variant="danger" className="mx-4">
-              Sell
-            </Button>
+            <Mutation mutation={sellShares} variables={{
+              symbol: this.props.symbol,
+              price: 100.0,
+              quantity: parseInt(this.props.quantity)
+            }}>
+              {sell => <Button onClick={sell} variant="danger" className="mx-4">Sell</Button>}
+            </Mutation>
           </Col>
         </Form.Group>
       </>
