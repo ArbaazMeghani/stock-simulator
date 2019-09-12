@@ -20,7 +20,7 @@ const stockResolvers = {
       }
 
       if(existingStock) {
-        existingStock.price = parseFloat(((existingUser.price * existingUser.quantity) + (price * quantity))/(quantity + existingUser.quantity));
+        existingStock.price = parseFloat(((existingStock.price * existingStock.quantity) + (price * quantity))/(quantity + existingStock.quantity));
         existingStock.quantity += quantity;
       }
       else {
@@ -28,10 +28,7 @@ const stockResolvers = {
       }
 
       existingUser.balance -= quantity * price;
-
-      console.log(typeof(existingStock.price));
-      console.log(existingStock.price)
-
+      
       existingUser.save();
       return true;
     },
