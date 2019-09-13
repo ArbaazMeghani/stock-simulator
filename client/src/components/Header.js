@@ -13,7 +13,7 @@ class Header extends React.Component {
       const decoded = jwtDecode(this.props.token);
       console.log(decoded.user);
       this.props.saveUserAction(decoded.user);
-      return <Profile username={decoded.user.username}/>;
+      return <Profile username={decoded.user.username} balance={decoded.user.balance}/>;
     }
     return <AuthButtons />;
   }
@@ -22,7 +22,7 @@ class Header extends React.Component {
     return (
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand className="mr-auto">Stock Simulator</Navbar.Brand>
-        {this.accountArea()}
+        <Navbar.Brand>{this.accountArea()}</Navbar.Brand>
       </Navbar>
     );
   }
