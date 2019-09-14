@@ -12,6 +12,21 @@ const typeDefs = gql`
     quantity: Int
   }
 
+  type DataPoints {
+    month: String
+    price: Float
+  }
+
+  type StockData {
+    symbol: String
+    price: Float
+    Company: String
+    Open: Float
+    Close: Float
+    Yield: Float
+    Data: [DataPoints]
+  }
+
   type User {
     _id: String
     email: String
@@ -30,6 +45,7 @@ const typeDefs = gql`
     sellStock(symbol: String!, price: Float!, quantity: Int!): Boolean
     addBalance(balance: Float!): Float!
     subtractBalance(balance: Float): Float!
+    retrieveStockData(symbol: String!): StockData!
   }
 `;
 

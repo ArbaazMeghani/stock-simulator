@@ -8,8 +8,8 @@ export default class Profile extends React.Component {
     return (
       <>
         <Row>
-        <Col> Balance: {this.props.balance} </Col>
-        <Col> <Button className="mx-2" variant="secondary"> {this.props.username} </Button> </Col>
+          <Col> Balance: {this.props.balance} </Col>
+          <Col> <Button className="mx-2" variant="secondary"> {this.props.username} </Button> </Col>
         </Row>
       </>
     );
