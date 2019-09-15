@@ -23,7 +23,7 @@ const typeDefs = gql`
     Company: String
     Open: Float
     Close: Float
-    Yield: Float
+    Volume: Int
     Data: [DataPoints]
   }
 
@@ -45,7 +45,7 @@ const typeDefs = gql`
     sellStock(symbol: String!, price: Float!, quantity: Int!): Boolean
     addBalance(balance: Float!): Float!
     subtractBalance(balance: Float): Float!
-    retrieveStockData(symbol: String!): StockData!
+    retrieveStockData(symbol: String!): StockData
   }
 `;
 

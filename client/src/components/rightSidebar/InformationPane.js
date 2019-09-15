@@ -13,7 +13,7 @@ class InformationPane extends React.Component {
           <InformationItem label="Price" value={250}/>
           <InformationItem label="Open" value={235}/>
           <InformationItem label="Close" value={255}/>
-          <InformationItem label="Div. Yield" value={"1.38%"}/>
+          <InformationItem label="Vol." value={"1.38%"}/>
         </div>
       </div>
     );
