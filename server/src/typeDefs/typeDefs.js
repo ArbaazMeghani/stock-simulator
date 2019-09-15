@@ -13,7 +13,8 @@ const typeDefs = gql`
   }
 
   type DataPoints {
-    month: String
+    year: Int
+    month: Int
     price: Float
   }
 
