@@ -24,7 +24,7 @@ export default function LoginForm( { switchFormType, setUsername, setPassword } 
       </Form.Group>
 
       <Form.Group style={style}>
-        <a href="placeholder" onClick={switchFormType}> No account? Register instead -> </a>
+        <a href="placeholder" onClick={switchFormType}> No account? Register instead -{">"} </a>
       </Form.Group>
     </Form>
   );
