@@ -11,7 +11,8 @@ let path = require('path');
 
 mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
-  useCreateIndex: true
+  useCreateIndex: true,
+  useUnifiedTopology: true
 });
 
 currentUser = undefined;
