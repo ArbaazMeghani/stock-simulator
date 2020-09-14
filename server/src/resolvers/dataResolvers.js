@@ -7,8 +7,13 @@ const dataResolvers = {
       current = await axios.get(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=demo`);
       // console.log(historic.data);
       const globalQuote = current.data['Global Quote'];
+      console.log(globalQuote);
       return {
-        symbol: globalQuote['01. symbol']
+        symbol: globalQuote['01. symbol'],
+        price: globalQuote['05. price'],
+        open: globalQuote['02. open'],
+        close: globalQuote['08. previous close'],
+        volume: globalQuote['06. volume']
       }
     }
   }

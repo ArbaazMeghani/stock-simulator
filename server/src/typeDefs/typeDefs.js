@@ -21,11 +21,10 @@ const typeDefs = gql`
   type StockData {
     symbol: String
     price: Float
-    Company: String
-    Open: Float
-    Close: Float
-    Volume: Int
-    Data: [DataPoints]
+    open: Float
+    close: Float
+    volume: Int
+    data: [DataPoints]
   }
 
   type User {
