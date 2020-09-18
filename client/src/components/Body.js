@@ -5,9 +5,11 @@ import Container from 'react-bootstrap/Container';
 import LeftSidebar from './leftSidebar/LeftSidebar';
 import RightSidebar from './rightSidebar/RightSidebar';
 import ChartArea from './chartArea/ChartArea';
+import { connect } from 'react-redux';
 
-export default class Body extends React.Component {
+class Body extends React.Component {
   render() {
+    console.log(this.props.symbol);
     return (
       <Container fluid>
          <Row>
@@ -19,3 +21,12 @@ export default class Body extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  const { simpleReducer } = state;
+  return {
+    symbol: simpleReducer.symbol
+  };
+}
+
+export default connect(mapStateToProps, null)(Body);
